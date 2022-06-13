@@ -1,0 +1,99 @@
+/*Master Styles*/
+
+html {
+    overflow: -moz-scrollbars-vertical!important; 
+    overflow-y: scroll!important;
+    font-family: 'Courier Prime', monospace!important;
+}
+
+body { 
+    overflow-x:hidden!important; 
+
+}
+
+
+@font-face {
+  font-family: HeaderFont;
+  src: local(HeaderFont),
+       local(veteran-typewriter),
+       url(../fonts/veteran-typewriter.woff) format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: NavCourier;
+  src: local(NavCourier),
+       local(Courier-Regular),
+       url(../fonts/Courier--Regular/Courier-Regular.woff) format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+
+  nav {
+    font-family:  NavCourier!important;
+    font-size: 1.3rem;
+}
+
+@media only screen and (max-width: 550px) {
+  nav {
+    font-size: 1rem;
+  }
+}
+/*Thank you page*/
+
+.index-bg-img {
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: HeaderFont!important;
+}
+
+/*thank you animation */
+
+
+    .subtitle-index {
+
+        animation: fadeIn linear 1.5s 1s;
+        -webkit-animation: fadeIn linear 1.5s 1s;
+        -moz-animation: fadeIn linear 1.5s 1s;
+    
+        -webkit-animation-fill-mode: forwards;
+    }
+    
+    @keyframes fadeIn {
+        0% {opacity:0; color: transparent;}
+        100% {opacity:1; color: white;}
+      }
+      
+      @-moz-keyframes fadeIn {
+        0% {opacity:0; color: transparent;}
+        100% {opacity:1; color: white;}
+      }
+      
+      @-webkit-keyframes fadeIn {
+        0% {opacity:0; color: transparent;}
+        100% {opacity:1; color: white;}
+      }
+      
+      @-o-keyframes fadeIn {
+        0% {opacity:0;color: transparent;}
+        100% {opacity:1; color: white;}
+      }
+      
+      @-ms-keyframes fadeIn {
+        0% {opacity:0;color: transparent;}
+        100% {opacity:1; color: white;}
+      }
+
+
+.ToS {
+  max-height: 80vh;
+}
+
+.sub-footer {
+  align-items: center;
+}

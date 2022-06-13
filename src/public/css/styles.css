@@ -1,0 +1,541 @@
+/*Master Styles*/
+
+html {
+    overflow: -moz-scrollbars-vertical!important; 
+    overflow-y: scroll!important;
+    font-family: 'Courier Prime', monospace!important;
+}
+
+body { 
+    overflow-x:hidden!important; 
+
+}
+
+.support-main {
+  font-family:  'Roboto Mono', monospace!important ;
+}
+
+
+.category-headers h2 {
+  font-weight: 600!important;
+}
+
+
+.font-family{
+  font-family:  NavCourier!important;
+}
+
+
+nav {
+    font-family:  NavCourier!important;
+    font-size: 1.3rem;
+}
+
+
+.categories-main {
+  font-family:  'Roboto Mono', monospace!important ;
+}
+
+.about-main {
+  font-family:  'Roboto Mono', monospace!important ;
+  z-index: -1;
+}
+
+
+
+.index-bg-img {
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: HeaderFont!important;
+}
+
+.ab-bg-img {
+
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+
+
+
+
+
+@font-face {
+  font-family: HeaderFont;
+  src: local(HeaderFont),
+       local(veteran-typewriter),
+       url(../fonts/veteran-typewriter.woff) format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: NavCourier;
+  src: local(NavCourier),
+       local(Courier-Regular),
+       url(../fonts/Courier--Regular/Courier-Regular.woff) format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+/*fonts*/
+
+
+
+
+
+/*hover support*/
+
+.span-1:hover {
+    color: rgba(115, 0, 0, 1);
+
+}
+
+.span-1-1:hover {
+  color: #dc3545;
+}
+
+
+.span-2:hover {
+    color: #dc3545;
+}
+
+.span-3:hover {
+    color: #dc3545;
+}
+/*#dc3545 color for danger class bootstrap*/
+/*side nav support*/
+/*category list */
+
+
+.list-style {
+  color: rgba(115, 0, 0, 1) !important ;
+}
+
+.list-style a {
+  color: rgba(115, 0, 0, 1) !important ;
+}
+
+.hash-style {
+  color: rgba(115, 0, 0, 1) !important ;
+}
+
+
+/*media query for category sidenav*/
+
+#sidebar {
+    width: 300px;
+}
+
+
+
+
+@media only screen and (max-width: 1000px) {
+    #sidebar {
+      width: 250px;
+    }
+  }
+
+@media only screen and (max-width: 550px) {
+    #sidebar {
+      width: 200px;
+    }
+    nav {
+      font-size: 1rem;
+    }
+  }
+
+@media only screen and (max-width: 425px) {
+    #sidebar {
+      width: 160px;
+    }
+  }
+
+/*animation index*/
+
+.subtitle-index {
+
+    animation: fadeIn linear 2s 1.8s;
+    -webkit-animation: fadeIn linear 2s 1.8s;
+    -moz-animation: fadeIn linear 2s 1.8s;
+
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0; color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0; color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0; color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+
+  #link {
+
+    animation: fadeInn linear 1.8s 3.9s;
+    -webkit-animation: fadeInn linear 1.8s 3.9s;
+    -moz-animation: fadeInn linear 1.8s 3.9s;
+
+    -webkit-animation-fill-mode: forwards;
+}
+
+#link:hover {
+  cursor: pointer;
+}
+
+@keyframes fadeInn {
+    0% {opacity:0; color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-moz-keyframes fadeInn {
+    0% {opacity:0; color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-webkit-keyframes fadeInn {
+    0% {opacity:0; color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-o-keyframes fadeInn {
+    0% {opacity:0;color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-ms-keyframes fadeInn {
+    0% {opacity:0;color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+
+/*about font*/
+
+
+/*animation about*/
+
+.line-1{
+
+ 
+    width: 9.3em;
+    border-right: 2.5px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 3s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 9.3em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: white;}
+  to{border-right-color: transparent;}
+}
+
+.subtitle-about {
+    animation: fadeInA linear 2s 3.1s;
+    -webkit-animation: fadeInA linear 2s 3.1s;
+    -moz-animation: fadeInA linear 2s 3.1s;
+
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes fadeInA {
+    0% {opacity:0; color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-moz-keyframes fadeInA {
+    0% {opacity:0; color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-webkit-keyframes fadeInA {
+    0% {opacity:0; color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-o-keyframes fadeInA {
+    0% {opacity:0;color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+  
+  @-ms-keyframes fadeInA {
+    0% {opacity:0;color: transparent;}
+    100% {opacity:1; color: white;}
+  }
+
+  @media only screen and (max-width: 550px) {
+    .line-1 {
+      font-size: 1.5rem!important;
+      margin-left: -20px; ;
+    }
+    .subtitle-about {
+        margin-left: -20px;
+    }
+  }
+
+  @media only screen and (max-width: 425px) {
+    .line-1 {
+      font-size: 1.6rem!important;
+
+    }
+    .subtitle-about {
+        font-size: 1rem!important;
+    }
+  }
+
+
+
+
+/*animation categories*/
+
+.line-2 {
+  width: 8.7em;
+  border-right: 2.5px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%);    
+}
+
+.animaa-typewriter {
+  animation: typewriterr 3s steps(44) 1s 1 normal both,
+             blinkTextCursorr 500ms steps(44) infinite normal;
+}
+@keyframes typewriterr{
+  from{width: 0;}
+  to{width: 8.7em;}
+}
+@keyframes blinkTextCursorr{
+  from{border-right-color: white;}
+  to{border-right-color: transparent;}
+}
+
+
+.subtitle-categories,.subtitle-categoriess {
+  animation: fadeInC linear 2s 3.1s;
+  -webkit-animation: fadeInC linear 2s 3.1s;
+  -moz-animation: fadeInC linear 2s 3.1s;
+
+  -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes fadeInC {
+  0% {opacity:0; color: transparent;}
+  100% {opacity:1; color: white;}
+}
+
+@-moz-keyframes fadeInC {
+  0% {opacity:0; color: transparent;}
+  100% {opacity:1; color: white;}
+}
+
+@-webkit-keyframes fadeInC {
+  0% {opacity:0; color: transparent;}
+  100% {opacity:1; color: white;}
+}
+
+@-o-keyframes fadeInC {
+  0% {opacity:0;color: transparent;}
+  100% {opacity:1; color: white;}
+}
+
+@-ms-keyframes fadeInC {
+  0% {opacity:0;color: transparent;}
+  100% {opacity:1; color: white;}
+}
+
+
+
+@media only screen and (max-width: 490px) {
+  .line-2 {
+    font-size: 1.6rem!important;
+
+  }
+  .subtitle-categories,.subtitle-categoriess {
+      font-size: 1rem!important;
+  }
+}
+
+
+/*Animation Contact*/
+
+.line-3 {
+  width: 4em;
+  border-right: 2.5px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%); 
+}
+
+.anima-typewriter {
+  animation: typewriterrr 2s steps(33) 1s 1 normal both,
+  blinkTextCursorrr 500ms steps(33) infinite normal;
+}
+@keyframes typewriterrr{
+from{width: 0;}
+to{width: 4em;}
+}
+@keyframes blinkTextCursorrr{
+from{border-right-color: white;}
+to{border-right-color: transparent;}
+
+}
+
+.subtitle-contact , .subtitle-contactt{
+  animation: fadeInCo linear 2s 3.1s;
+  -webkit-animation: fadeInCo linear 2s 3.1s;
+  -moz-animation: fadeInCo linear 2s 3.1s;
+
+  -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes fadeInCo {
+  0% {opacity:0; color: transparent;}
+  100% {opacity:1; color: white;}
+}
+
+@-moz-keyframes fadeInCo {
+  0% {opacity:0; color: transparent;}
+  100% {opacity:1; color: white;}
+}
+
+@-webkit-keyframes fadeInCo {
+  0% {opacity:0; color: transparent;}
+  100% {opacity:1; color: white;}
+}
+
+@-o-keyframes fadeInCo {
+  0% {opacity:0;color: transparent;}
+  100% {opacity:1; color: white;}
+}
+
+@-ms-keyframes fadeInCo {
+  0% {opacity:0;color: transparent;}
+  100% {opacity:1; color: white;}
+}
+
+
+
+
+
+
+  /*form*/
+ 
+.suggestion-form-wrapper {
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .suggestion-form {
+    height:70vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+  }
+  
+  form {
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:30px;
+    margin: 12px auto;
+    border: 2px solid #dc3545;
+    border-radius: 20px;
+    position:relative;
+    z-index:1;
+  }
+  
+  form > div{
+    position:absolute;
+    top:0;
+    left:50%;
+    padding:0 20px;
+    transform:translate(-50%,-50%);
+
+    border: 2px solid #dc3545;
+    border-radius: 20px;
+    text-align:center;
+  }
+  
+
+  
+  form > input,
+  form > textarea,
+  form > select {
+    padding: 12px;
+    margin: 12px auto;
+    border: 1px solid #dc3545;
+ 
+    border-radius: 4px;
+    display: block;
+    width: 70vw;
+  }
+  
+  form > textarea{
+    height:200px;
+    resize:none;
+  }
+  
+  form > input[type="submit"] {
+    max-width: 20vw;
+    padding-left: 1%;
+    padding-right: 1%;
+    cursor: pointer;
+    transition: 0.35s;
+    color: black;
+  }
+  
+  form > input[type="submit"]:hover {
+    background-color: #dc3545;
+  }
+
+/* FIX OF UGLY SELECT */
+SELECT {
+  background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+  background-position: calc(100% - 0.75rem) center !important;
+  -moz-appearance:none !important;
+  -webkit-appearance: none !important; 
+  appearance: none !important;
+  padding-right: 2rem !important;
+}
+
+/*card responsiveness*/
+.card {
+  width: 100%;
+}
+
+
+/*disable interaction*/
+
+.disable-interaction {
+  pointer-events: none;
+  user-select: none;
+}
