@@ -1,132 +1,81 @@
 import  express, {Request,Response, Router} from "express";
 import path from "path";
-import Articles from "../models/ArticleModel";
 import Tickets from "../models/TicketModel";
-import Teams from "../models/TeamMemberModel";
 
+// controllers
+const articleController = require('../controllers/articleController')
+const teamController = require('../controllers/teamController')
+const ticketController = require('../controllers/ticketController')
 
 // const nodeMail = require("nodemailer");
 const filterJson = require('json-schema-filter-js');
 const router: Router = express.Router();
 require('dotenv').config()
 
+// to enable patch & delete requests
+const methodOverride = require("method-override");
+router.use(methodOverride("_method", {
+  methods: ["POST", "GET"]
+}));
+
 router.use(express.static(path.join(__dirname, 'public')));
 
 // api
 
-router.get('/' , (req:Request, res:Response) => {
+router.get('/' , (req:Request,res:Response) => {
     res.render('api')
 })
 
 // articles
 
     // find all articles
-router.get('/articles', (req:Request, res:Response) => {
-    Articles.find((err, data) => {
-        if (err) {
-            res.status(500).send(err)
-        } else {
-            res.status(200).json(data)
-        }
-    })
-});
+router.get('/articles/all', articleController.allArticles);
 
     // find by id
-router.get('/articles/single/:id', (req:Request, res:Response) => {
-    Articles
-    .findById(req.params.id)
-    .then((article) => res.status(200).send(article))
-    .catch((err) => res.status(500).send(`We couldn't find the specified id , Error: ${err}`))
-})
+router.get('/articles/single/:id', articleController.singleArticle)
 
     // find by category
-router.get('/articles/cat/:category',(req: Request, res: Response) => {
-	Articles.find({category: req.params.category},(err:any,data:any) => {
-        const currentRoute =  req.params.category;
-        const availableRoutes = '[ US Government, Futuristic ,Historical ,Pharmaceutical ,Aliens , Hacking ,Ancient ,Mythical ,Antarctica ,Space ,Other ]'
-        if (err) {
-            res.send(`We couldn't find the specified category of: " ${currentRoute} " try one from the availabe list ${availableRoutes}, Error: ${err}`)
-        } else if (data.length == 0) {
-            res.send(`We couldn't find the specified category of: " ${currentRoute} " try one from the availabe list ${availableRoutes}, Error: ${err}`)
-        }
-         
-        else {
-             res.status(200).json(data)
-        }})
-})
+router.get('/articles/cat/:category', articleController.byCategory)
+
+    // add search by author at articles/author/:author
+    // maybe also by source
 
 
 // tickets
 
+    // redirect
+router.get('/tickets', ticketController.redirectTickets )
+
     // get all 
-router.get('/tickets', (req:Request, res:Response) => {
-    Tickets.find((err, data) => {
-        if (err) {
-            res.status(500).send(err)
-        } else {
-            const hidePrivate = data.map(i => [i.type, i.topic, i.subject, i._id] )
-            const filtered = filterJson(Tickets ,hidePrivate)
-            res.send(filtered)
-        }
-    })
-})
+router.get('/tickets/all', ticketController.getAll)
 
     // find by id
-router.get('/tickets/:id', (req:Request, res:Response) => {
-    Tickets
-    .findById(req.params.id)
-    .then((ticket) => {
-        const hidePrivate = [ticket.type, ticket.topic, ticket.subject, ticket._id]
-        const filtered = filterJson(Tickets ,hidePrivate)
-        res.status(200).send(filtered)
-    }
-    )
-    .catch((err) => res.status(500).send(`We couldn't find the specified id , Error: ${err}`))
-})
+router.get('/tickets/:id', ticketController.getById)
+
+    // find by id and name for config
+router.get('/tickets/:name/:id', ticketController.getByNameAndId)
 
     // upload tickets + mail
-
-
         // post route write to db
-router.post('/tickets' , async (req:Request, res:Response) => {
-    const { name, email, topic,type, subject } = req.body
-    const newTicket = new Tickets({
-        name: name,
-        email: email,
-        topic: topic,
-        type: type,
-        subject: subject,
-    })
-    newTicket.save().then(() => console.log('ticket saved succesfully'))
+router.post('/tickets' , ticketController.uploadTicket)
 
-    res.redirect('/secondarySites/thanks')
-})
+    // patch ticket only by user
+router.patch('/tickets/update/:id', ticketController.updateUser)
+    // hide all ticket _id's so that only poster can see & save his id and update it
+    
+router.delete('/tickets/delete/:id' , ticketController.deleteTicket)
+
 
 // team members
 
+    // redirect to about
+router.get('/team', teamController.redirectTeam)
+
     // all team members
-router.get('/team', (req: Request, res: Response) => {
-	Teams.find((err, data) => {
-        if (err) {
-            res.status(500).send(err)
-        } else {
-            const hidePrivate = data.map((i:any) => [i.name , i.desc, i.links.github, i.links.instagram, i.links.twitter, i.links.facebook , i._id ])
-            const filtered = filterJson(Tickets ,hidePrivate)
-            res.status(200).send(filtered)
-        }
-    })
-})
+router.get('/team/all', teamController.allTeamMembers)
 
     // find team members by id
-router.get('/team/:id',(req: Request, res: Response) => {
-	Teams.findById(req.params.id)
-	.then((data) => {
-        const hidePrivate = [data.name , data.desc, data.links.github, data.links.instagram, data.links.twitter, data.links.facebook  ]
-        const filtered = filterJson(Tickets ,hidePrivate)
-        res.status(200).send(filtered)
-    })
-	.catch((err) => res.status(500).send(err))
-})
+router.get('/team/:id',teamController.memberById)
 
 
 

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head profile="images.1/appIcon.png">
+        <%- include('./partials/header.ejs')%>
+        <title>Ticket </title>
+        <base href="/">
+      </head>
+</head>
+<body >
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top p-3 category-nav">
+        <div class="container-fluid" style="text-transform: uppercase;">
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+              </li>
+            </ul>
+        
+          </div>
+          <a class="navbar-brand ms-auto" href="#" id="right-side">Conspi Archive</a>
+        </div>
+    </nav>
+    <div class="ticket-bg index-bg-img d-flex align-items-center" style="background-image: url('images.1/ticketbg.jpg');
+    height: 100vh ; width: 100vw">
+        <div class="container">
+            <h1 class="text-light mt-2">Your Ticket  <%= data[4] %> </h1>
+        </div>
+    </div>
+
+    <div class="container rounded" style="overflow:hidden">
+
+        <h1 class="text-center my-5">Your current Ticket <span class="text-danger">Data</span> </h1>
+
+        <div class="list-group mb-4" id="ticketList">
+            <%if(data.length < 4) { %>
+                <button type="button" class="list-group-item list-group-item-action" >Type: <%= data[0]  %> </button>
+                <button type="button" class="list-group-item list-group-item-action">Topic: <%= data[1]  %>  </button>
+                <button type="button" class="list-group-item list-group-item-action">Subject: <%= data[2]  %> </button>
+            <%} else {%>
+                <button type="button" class="list-group-item list-group-item-action" >Type: <%= data[0]  %> </button>
+                <button type="button" class="list-group-item list-group-item-action">Topic: <%= data[1]  %>  </button>
+                <button type="button" class="list-group-item list-group-item-action">Subject: <%= data[2]  %> </button>
+                <button type="button" class="list-group-item list-group-item-action">Id: <%= data[3]  %> </button>
+                <button type="button" class="list-group-item list-group-item-action">Name: <%= data[4]  %> </button>
+                <button type="button" class="list-group-item list-group-item-action">Email: censored </button>
+            <% }%>
+        </div>
+    </div>
+        <%if(data.length < 4) { %>
+            <div class=""></div>
+        <% } else { %>
+ 
+
+            <div class="container">
+                <div class="alert alert-danger" role="alert">
+                    Warning: in this section you can update or delete your Ticket    
+                </div>
+                <hr>
+                <h1 class="">Update Your Ticket</h1>
+            </div>  
+            <div class="suggestion-form-wrapper">
+                <div class="suggestion-form ">
+                    <form  action="/api/tickets/update/<%= data[3] %>?_method=PATCH" method="post"  class="my-sm-3" id="patch-form" >
+
+                
+                        <input required  type="name" id="name" name="name" placeholder="Name" >
+                        
+
+                        <input type="email" id="input-1" required name="email" placeholder="Email" required>
+
+                        <input type="text" required placeholder="Topic" name="topic" >
+
+                        <select name="type" required>
+                            <option value="bug">Bug</option>
+                            <option value="help">Help</option>
+                            <option value="contact">Contact</option>
+                            <option value="suggestion">Suggestion</option>
+                        </select>
+
+                        <textarea placeholder="Subject" name="subject" required id="input-2"></textarea>
+
+
+                        <input type="submit"  name="submit" id="patch-submit" value="Submit">
+                        </form>
+                </div>
+            </div> 
+            <div class="container">
+                <hr>
+                <h1 >Delete Ticket</h1>
+            <div class="alert alert-danger mt-4" role="alert">
+                Warning: This should go without saying, but you cannot undo this action. All your data will be permanently deleted.  
+            </div>
+            <button class="btn btn-danger my-4 btn-lg" onclick="confirm()"> Delete </button>
+            </div>
+        <% } %>  
+
+
+
+    <%- include('./partials/footer.ejs')%>
+    <%- include('./partials/scripts.ejs')%>
+    <script>
+        const confirm = () => {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success mx-2',
+                    cancelButton: 'btn btn-danger mx-2'
+                },
+                buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    "Your ticket has been deleted. After clicking ok you'll be redirected to the homepage",
+                    'success'
+                    ).then(() => {
+                        window.location.href = "/api/tickets/delete/<%= data[3] %>?_method=DELETE"
+                    })
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Action was cancelled',
+                    'error'
+                    )
+                }
+                })
+        }
+
+
+    </script>
+
+<script>
+    $(document).ready(function(){
+        $(window).scroll(function(){
+            if($(window).scrollTop() < $(window).height()){
+                $(".category-nav").css({"background-color":"transparent" , "opacity":"1" });   
+            }
+            else{
+                $(".category-nav").css({"background-color":"black" , "opacity":"0.8" , });
+            }
+    
+        })
+    })
+    </script>
+</body>
+</html>

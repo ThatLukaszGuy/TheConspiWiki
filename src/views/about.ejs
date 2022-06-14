@@ -148,59 +148,29 @@ height: 100vh ; width: 100vw">
     <p class="lead text-center mb-5">Meet our reliable teammates</p>
     <div class="row g-4 text-light">
       
-      <div class=" col-sm col-lg-3 d-flex">
-        <div class="card" style="background-color: black;">
-          <div class="card-body text-center flex-fill text-tru">
-            <img src="images.1/Frosty.jpg" class="rounded-circle" alt="" style="width: 128px; height: 128px;">
-            <h3 class="card-title mb3">Thatdoritoguy</h3>
-            <p class="card-text">
-              Leading project programmer / Web developer
-
-            </p>
+      
+      <!--after uploading all member into db just delete lower divs leaving only this snippet-->
+      <% members.forEach(function(member) { %>
+        <div class=" col-sm col-lg-3 d-flex">
+          <div class="card" style="background-color: black;">
+            <div class="card-body text-center flex-fill text-tru">
+              <img src="data:image/<%=member.img.contentType%>;base64,
+              <%=member.img.data.toString('base64')%>" class="rounded-circle" alt="" style="width: 128px; height: 128px;">              
+              <h3 class="card-title mb3"><%= member.name %></h3>
+              <p class="card-text">
+                <%= member.desc %>
+  
+              </p>
+              
+              <a href="<%= member.links.github %> " target="_blank"><i class="bi bi-github text-light mx-1"></i></a>
+  
+              <a href="<%= member.links.instagram %>"><i class="bi bi-instagram text-light mx-1"></i></a>
             
-            <a href="https://github.com/ThatLukaszGuy" target="_blank"><i class="bi bi-github text-light mx-1"></i></a>
-
-            <a href="#"><i class="bi bi-instagram text-light mx-1"></i></a>
-          
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class=" col-sm col-lg-3 d-flex">
-        <div class="card" style="background-color: black;">
-          <div class="card-body text-center flex-fill">
-            <img src="images.1/tonimakaroni.jpg" class="rounded-circle" alt="" style="width: 128px; height: 128px;">
-            <h3 class="card-title mb3">Toni</h3>
-            <p class="card-text">
-              Leading in UX/UI design /  Concept creator
-
-            </p>
-            
-            <a href="https://github.com/Fulcrum68" target="_blankl"><i class="bi bi-github text-light mx-1"></i></a>
-
-            <a href="#"><i class="bi bi-instagram text-light mx-1"></i></a>
-          
-          </div>
-        </div>
-      </div>
-
-      <div class=" col-sm col-lg-3 d-flex">
-        <div class="card " style="background-color: black;">
-          <div class="card-body text-center flex-fill">
-            <img src="images.1/avatar_steamdiscord_blasphemous.jpg" class="rounded-circle" alt="" style="width: 128px; height: 128px;">
-            <h3 class="card-title mb3">EskinosMeister</h3>
-            <p class="card-text">
-                Article writer  /  Bug tester  /  reviewer
-
-            </p>
-            
-            <a href="#"><i class="bi bi-facebook text-light mx-1"></i></a>
-
-            <a href="#"><i class="bi bi-instagram text-light mx-1"></i></a>
-          
-          </div>
-        </div>
-      </div>
+      
+      <% }) %> 
 
       <div class=" col-sm col-lg-3 d-flex">
         <div class="card " style="background-color: black;">
@@ -219,6 +189,8 @@ height: 100vh ; width: 100vw">
           </div>
         </div>
       </div>
+
+
 
     
     

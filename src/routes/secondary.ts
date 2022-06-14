@@ -10,7 +10,11 @@ router.get('/ToS', (req:Request,res:Response) => {
 });
 
 router.get('/thanks', (req:Request,res:Response) => {
-    res.render('secondary/thankYou')
+    res.render('secondary/thankYou' , {
+        msg: '',
+        id: '',
+        trigger: ''
+    })
 });
 
 module.exports = router
