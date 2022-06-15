@@ -3,15 +3,235 @@
 <head>
     <head profile="images.1/appIcon.png">
         <%- include('./partials/header.ejs')%>
+        <link rel="stylesheet" href="/js/highlight/styles/tokyo-night-dark.min.css">
         <title>API </title>
         <base href="/">
       </head>
 </head>
 <body>
-    <a href="/">go back</a>
-    <h1>Api</h1>
+<!--nav bar-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top p-3 index-nav">
+    <div class="container-fluid" style="text-transform: uppercase;">
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about">about</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/categories">categories</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/support">contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  active" href="#">API</a>
+          </li>
+        </ul>
+    
+      </div>
+      <a class="navbar-brand ms-auto" href="#" id="right-side">Conspi Archive</a>
+    </div>
+</nav>
+
+<div class="bg-image index-bg-img d-flex align-items-center z-setting" 
+style="background-image: url('images.1/apibg.jpg');
+height: 100vh ; width: 100vw">
+
+    <div class="container p-5 p-lg-0 pt-lg-5 text-sm-start text-light pb-lg-5 d-flex">
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <div class="row align-items-center " >
+            
+            
+              <div class="mx-4 my-5 col conspi-header lead text-start">
+                <h1 class="line-3 anima-typewriter" style="font-size: 2.5rem;">Our API</h1>
+                <p class="my-4 subtitle-contact" style="font: size 7vw; color: transparent;">
+                    Read the full documentation
+                </p>
+
+                <p class="my-4 subtitle-contactt" style="font: size 7vw; color: transparent;">
+                  Scroll down
+              </p>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid overflow-hidden bg-light pt-lg-5 support-text support-main z-setting" style="background-color: black;">
+    <div class="row  overflow-auto">
+        <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0  d-flex sticky-top" >
+            <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-4 pt-4 text-white">
+
+                <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start text-light" id="menu" >
+                    <li class=" ">
+                        <a href="/api#articles" class="nav-link px-sm-0 px-2 link-dark lead span-2" id="#el">
+                            <i class="bi bi-newspaper span-2"></i><span class="ms-1 d-none d-sm-inline span-2" > Articles</span>
+                        </a>
+                    </li>
+
+                    <li class="" >
+                        <a href="/api#teams" class="nav-link px-sm-0 px-2 lead link-dark span-2" id="#el">
+                            <i class="bi bi-people-fill span-2"></i><span class="span-2 ms-1 d-none d-sm-inline"> Teams</span></a>
+                    </li>
+
+                    <li class="" >
+                      <a href="/api#tickets" class="nav-link px-sm-0 px-2 lead link-dark span-3" id="#el">
+                        <i class="bi bi-ticket-detailed-fill span-2"></i><span class="span-3 ms-1 d-none d-sm-inline"> Tickets</span></a>
+                  </li>
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="col d-flex flex-column  bg-light text-dark support-main z-setting">
+            <section class="row overflow-auto">
+                <div class="col pt-4">
+                    <h3><span style="color:#dc3545 ;">#</span>Welcome to our API Documentation</h3>
+                    <p class="lead">Here you can take a look at what responses you can get (in JSON format) depending to the route you send your request to.</p>
+                    <div class="alert alert-danger" role="alert">
+                        Accessing the direct api routes <br>
+                        (e.g. : <br> 'api/articles',<br> 'api/teams',<br> 'api/tickets')<br>
+                        will <u>not</u> give a JSON response but cause a redirect to one of the static sites
+                    </div>                    
+                    <div class="alert alert-danger" role="alert">
+                      RO : Returns one instance of (article/team/ticket) <br>
+                      RM : Returns multiple instances of (articles/teams/tickets)
+                    </div>
+                    <hr />
+                </div>
+            </section>
+            <section class="row overflow-auto" id="articles">
+              <div class="col pt-4">
+                  
+                  <h3><span style="color:#dc3545 ;">#</span>Articles</h3>
+                  <p>
+                    Articles can be accessed on the api routes mentioned below. All locations will return a JSON object true to the model below
+                  </p>
+
+                  <div class="list-group mb-4" >
+                        <button type="button" class="list-group-item list-group-item-action" >Get all: <kbd>/api/articles/all</kbd> <span class="badge bg-danger">RM</span></button>
+                        <button type="button" class="list-group-item list-group-item-action">Get by ID: <kbd>/api/articles/YOUR_ID</kbd> <span class="badge bg-danger">RO</span></button>
+                        <button type="button" class="list-group-item list-group-item-action">Get by category: <kbd>/api/articles/cat/YOUR_CATEGORY</kbd> <span class="badge bg-danger">RM</span></button>
+                        <button type="button" class="list-group-item list-group-item-action">Get by author: <kbd>/api/articles/author/YOUR_AUTHOR</kbd> <span class="badge bg-danger">RM</span></button>
+                        <button type="button" class="list-group-item list-group-item-action">Get by source: <kbd>/api/articles/source/YOUR_SOURCE</kbd> <span class="badge bg-danger">RM</span></button>
+                  </div>
+                  <h5><span style="color:#dc3545">##</span>Json respone object</h5>
+                  <pre><code class="language-json rounded">
+{
+  "author": String,
+  "title": String,
+  "body": {
+      "introduction": String,
+      "main": String,
+      "conclusion": String
+  },
+  "source": String,
+  "category": String
+}
+                  </code></pre>
+              </div>
+          </section>
+
+          <section class="row overflow-auto" id="teams">
+            <div class="col pt-4">
+                
+                <h3><span style="color:#dc3545 ;">#</span>Teams</h3>
+                <p>
+                  Teammembers can be accessed through the api routes below but it's most recommended to just visit the about section. All locations will return a JSON object true to the model below
+                </p>  
+                <div class="list-group mb-4" >
+                  <button type="button" class="list-group-item list-group-item-action" >Get all: <kbd>/api/teams/all</kbd> <span class="badge bg-danger">RM</span></button>
+                  <button type="button" class="list-group-item list-group-item-action">Get by ID: <kbd>/api/teams/YOUR_ID</kbd> <span class="badge bg-danger">RO</span></button>
+                </div>
+                <h5><span style="color:#dc3545">##</span>Json respone object</h5>
+                <pre><code class="language-json rounded">
+{
+  "name": String,
+  "desc": String,
+  "img":
+  {
+      "data": Buffer,
+      "contentType": String
+  },
+ "links": {
+      "github": String,
+      "instagram": String,
+      "twitter": String,
+      "facebook": String
+  }
+}
+                </code></pre>
+
+            </div>
+           </section>
+           <section class="row overflow-auto  " id="tickets"> <!--last paragraph/section should have bottom padding-->
+            <div class="col pt-4">
+                
+                <h3><span style="color:#dc3545 ;">#</span>Tickets</h3>
+                <p>Tickets are our system of support and are meant to be possible without the need of user signup / registration. For specific info about data handling read the <a href="/secondarySites/ToS" class="link-danger">privacy policy</a>.
+                  
+                  <div class="alert alert-danger mt-4" role="alert">
+                    When accessing tickets the ID, Email, Name will always be hidden, the full data is sent to you by mail upon creating a ticket [with one exception*]
+                  </div>
+                </p>
+                <p>* This exception occurs on the <kbd>/api/tickets/YOUR_NAME/YOUR_ID</kbd> route, the id and name are visible there but the email still hidden. From there you can 
+                update and/or delete your ticket and with that all data that you submitted to us.</p>
+                <div class="list-group mb-4" >
+                  <button type="button" class="list-group-item list-group-item-action" >Get all: <kbd>/api/tickets/all</kbd> <span class="badge bg-danger">RM</span></button>
+                  <button type="button" class="list-group-item list-group-item-action">Get by ID: <kbd>/api/tickets/YOUR_ID</kbd> <span class="badge bg-danger">RO</span></button>
+                  <button type="button" class="list-group-item list-group-item-action">Get by ID & Name: <kbd>/api/tickets/YOUR_NAME/YOUR_ID</kbd> <span class="badge bg-danger">RO</span></button>
+                  <button type="button" class="list-group-item list-group-item-action">For security reasons the <kbd>POST</kbd> , <kbd>PATCH</kbd>, <kbd>DELETE</kbd> routes will remain hidden </button>
+                </div>
+
+                <h5><span style="color:#dc3545">##</span>Json respone object</h5>
+                <pre><code class="language-json rounded mb-5">
+{
+  "topic": String,
+  "type": String,
+  "subject": String,
+}              
+                </code></pre>
+            </div>
+            </section>
+
+        </div>
+    </div>
+  </div>
+
+
+
     <%- include('./partials/footer.ejs')%>
     <%- include('./partials/scripts.ejs')%>
+    <script src="js/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script>
+  $(document).ready(function(){
+      $(window).scroll(function(){
+          if($(window).scrollTop() < $(window).height()){
+              $(".index-nav").css({"background-color":"transparent" , "opacity":"1" });   
+          }
+          else{
+              $(".index-nav").css({"background-color":"black" , "opacity":"0.8" , });
+          }
 
+      })
+  })
+
+
+  </script>
 </body>
 </html>

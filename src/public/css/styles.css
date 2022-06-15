@@ -91,7 +91,7 @@ nav {
 /*hover support*/
 
 .span-1:hover {
-    color: rgba(115, 0, 0, 1);
+    color: #dc3545; /*originally dark red*/
 
 }
 
@@ -111,17 +111,17 @@ nav {
 /*side nav support*/
 /*category list */
 
-
+/*rgba(115, 0, 0, 1) for darker red ,all 3 classes originally dark red */
 .list-style {
-  color: rgba(115, 0, 0, 1) !important ;
+  color: #dc3545  !important ;
 }
 
 .list-style a {
-  color: rgba(115, 0, 0, 1) !important ;
+  color: #dc3545  !important ;
 }
 
 .hash-style {
-  color: rgba(115, 0, 0, 1) !important ;
+  color: #dc3545  !important ;
 }
 
 
