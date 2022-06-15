@@ -2,6 +2,7 @@ import express,{ Request,Response, Application } from "express";
 import helmet from "helmet";
 import cors from "cors"
 import path from "path";
+import connectDB from './data/db'
 
 // basic config
 
@@ -11,6 +12,9 @@ app.use(express.urlencoded({extended: true}))
 app.use(helmet({contentSecurityPolicy: false,}))
 app.use(cors({optionsSuccessStatus: 200}))
 require('dotenv').config()
+
+// launch DataBase connection 
+connectDB()
 
 // view engine + static files
 app.use(express.static(path.join(__dirname, 'public')));

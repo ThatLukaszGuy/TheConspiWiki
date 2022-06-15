@@ -1,7 +1,22 @@
 import Tickets from "../models/TicketModel";
 import  {Request,Response} from "express";
-
+const nodemailer = require('nodemailer')
 const filterJson = require('json-schema-filter-js');
+
+// mail config
+const transporter = nodemailer.createTransport({
+    host: "smtp-mail.outlook.com", // hostname
+    secureConnection: false, // TLS requires secureConnection to be false
+    port: 587, // port for secure SMTP
+    tls: {
+        ciphers:'SSLv3'
+    },
+    auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PW
+    }
+});
+
 
 // redirect
 exports.redirectTickets = (req: Request, res: Response) => {
@@ -74,6 +89,36 @@ exports.uploadTicket = async (req:Request, res:Response) => {
                 trigger: 'yes'
             })
         })
+        .then(() => {
+            // setup e-mail data
+            const mailOptions = {
+                from: `"The Conspi Wiki " <${process.env.MAIL_USER}>`, // sender address
+                to: newTicket.email, // receiver
+                subject: `Hello ${newTicket.name}`, // Subject line
+                text: 'We have successfully created your ticket, access all details/modify/delete it at "/api/tickets/YOURNAME/YOURID"', // plaintext body
+                html: `We have <b>successfully</b> created your ticket,
+                       <br> 
+                       access all details/modify/delete it at /api/tickets/YOURNAME/YOURID
+                       <br>
+                       <b>All details</b>
+                       <ul>
+                        <li>Name: <b>${newTicket.name}</b></li>
+                        <li>Email: <b>${newTicket.email}</b></li>
+                        <li>ID: <b>${newTicket._id}</b></li>
+                        <li>Topic: <b>${newTicket.topic}</b></li>
+                        <li>Subject: <b>${newTicket.subject}</b></li>
+                       </ul>
+                       ` // html body
+            };
+            transporter.sendMail(mailOptions, function(error:any, info:any){
+                if(error){
+                    return console.log(error);
+                }
+            
+                console.log('Message sent: ' + info.response);
+            });
+
+        })
 }
 
 // update ticket
@@ -82,7 +127,36 @@ exports.updateUser = (req:Request, res:Response) => {
     Tickets
         .findByIdAndUpdate(id, req.body, { new : true})
         .then((data) => {
-            res.redirect(`/api/tickets/${req.body.name}/${id}#ticketList`)    
+                    // setup e-mail data
+                    const mailOptions = {
+                            from: `"The Conspi Wiki " <${process.env.MAIL_USER}>`, // sender address
+                            to: data.email, // receiver
+                            subject: `Hello ${data.name}`, // Subject line
+                            text: 'We have successfully updated your ticket, access all details/modify/delete it at "/api/tickets/YOURNAME/YOURID"', // plaintext body
+                            html: `We have <b>successfully</b> updated your ticket,
+                                   <br> 
+                                   access all details/modify/delete it at /api/tickets/YOURNAME/YOURID
+                                   <br>
+                                   <b>All *updated* details</b>
+                                   <ul>
+                                    <li>Name: <b>${data.name}</b></li>
+                                    <li>Email: <b>${data.email}</b></li>
+                                    <li>ID: <b>${data._id}</b></li>
+                                    <li>Topic: <b>${data.topic}</b></li>
+                                    <li>Subject: <b>${data.subject}</b></li>
+                                   </ul>
+                                   ` // html body
+                    };
+                    transporter.sendMail(mailOptions, (error:any, info:any) => {
+                        if(error){
+                            return console.log(error);
+                        }
+                        
+                        console.log('Message sent: ' + info.response);
+                    });
+            
+            res.redirect(`/api/tickets/${req.body.name}/${id}#ticketList`)   
+
         }).then(() => console.log('Patched !'))
     
 }
@@ -93,7 +167,7 @@ exports.deleteTicket = (req:Request, res:Response) => {
     Tickets
         .deleteMany({_id: id})
         .then((data) => {
-        res.redirect('/')
+            res.redirect('/')
         })
         .then(() => console.log('Deleted !'))
 }

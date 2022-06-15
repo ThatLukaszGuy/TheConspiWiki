@@ -5,10 +5,12 @@ const router: Router = express.Router();
 
 router.use(express.static(path.join(__dirname, 'public')));
 
+// privacy policy
 router.get('/ToS', (req:Request,res:Response) => {
     res.render('secondary/ToS')
 });
 
+// redirect
 router.get('/thanks', (req:Request,res:Response) => {
     res.render('secondary/thankYou' , {
         msg: '',

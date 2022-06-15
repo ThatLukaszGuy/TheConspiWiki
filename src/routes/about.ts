@@ -1,23 +1,12 @@
-import  express, {Request,Response} from "express";
+import  express, {Request,Response,Router} from "express";
 import path from "path";
-import Teams from "../models/TeamMemberModel";
-const router = express.Router();
+const router: Router = express.Router();
+
+const teamController = require('../controllers/teamController')
 
 
 router.use(express.static(path.join(__dirname, 'public')));
 
-router.get('/', (req: Request, res : Response) => {
-    Teams.find((err,data) => {
-        if (err) {
-            res.send(err)
-        } else {
-            res.render('about' , {
-                members: data
-            })
-        }
-    })
-    
-
-});
+router.get('/', teamController.aboutPageRender);
 
 module.exports = router

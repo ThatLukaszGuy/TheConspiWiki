@@ -31,3 +31,18 @@ exports.memberById = (req: Request, res: Response) => {
     })
 	.catch((err) => res.status(500).send(err))
 }
+
+// about page
+exports.aboutPageRender = (req: Request, res : Response) => {
+    Teams.find((err,data) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.render('about' , {
+                members: data
+            })
+        }
+    })
+    
+
+}

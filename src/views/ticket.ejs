@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="container rounded" style="overflow:hidden">
+    <div class="container rounded ticket" style="overflow:hidden">
 
         <h1 class="text-center my-5">Your current Ticket <span class="text-danger">Data</span> </h1>
 
@@ -56,10 +56,13 @@
         <% } else { %>
  
 
-            <div class="container">
+            <div class="container ticket">
                 <div class="alert alert-danger" role="alert">
                     Warning: in this section you can update or delete your Ticket    
                 </div>
+                <div class="alert alert-warning mt-3" role="alert">
+                    Disclaimer: To update your ticket you have to fill out <u>all</u> the fields below, either with new, updated data or/and with the parts you wish to keep
+                  </div>
                 <hr>
                 <h1 class="">Update Your Ticket</h1>
             </div>  
@@ -89,7 +92,7 @@
                         </form>
                 </div>
             </div> 
-            <div class="container">
+            <div class="container ticket">
                 <hr>
                 <h1 >Delete Ticket</h1>
             <div class="alert alert-danger mt-4" role="alert">

@@ -6,7 +6,7 @@ function redirect() {
 
     const links = []
 
-    fetch('/api/articles/').then((response) => {
+    fetch('/api/articles/all').then((response) => {
         if (response.ok) {
             return response.json();
         } else {

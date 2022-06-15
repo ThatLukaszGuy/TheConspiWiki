@@ -1,6 +1,5 @@
 import  express, {Request,Response, Router} from "express";
 import path from "path";
-import Tickets from "../models/TicketModel";
 
 // controllers
 const articleController = require('../controllers/articleController')
@@ -8,7 +7,6 @@ const teamController = require('../controllers/teamController')
 const ticketController = require('../controllers/ticketController')
 
 // const nodeMail = require("nodemailer");
-const filterJson = require('json-schema-filter-js');
 const router: Router = express.Router();
 require('dotenv').config()
 
@@ -20,6 +18,9 @@ router.use(methodOverride("_method", {
 
 router.use(express.static(path.join(__dirname, 'public')));
 
+
+// actual routing + middleware
+
 // api
 
 router.get('/' , (req:Request,res:Response) => {
@@ -28,17 +29,23 @@ router.get('/' , (req:Request,res:Response) => {
 
 // articles
 
+    // redirect
+router.get('/articles', articleController.redirectArticle)
+
     // find all articles
 router.get('/articles/all', articleController.allArticles);
 
     // find by id
-router.get('/articles/single/:id', articleController.singleArticle)
+router.get('/articles/:id', articleController.singleArticle)
 
     // find by category
 router.get('/articles/cat/:category', articleController.byCategory)
 
-    // add search by author at articles/author/:author
-    // maybe also by source
+    // find by author
+router.get('/articles/author/:author', articleController.getAuthor)
+
+    // find by source
+router.get('/articles/source/:source', articleController.getSource)
 
 
 // tickets
@@ -56,13 +63,13 @@ router.get('/tickets/:id', ticketController.getById)
 router.get('/tickets/:name/:id', ticketController.getByNameAndId)
 
     // upload tickets + mail
-        // post route write to db
+    // post route write to db
 router.post('/tickets' , ticketController.uploadTicket)
 
     // patch ticket only by user
 router.patch('/tickets/update/:id', ticketController.updateUser)
-    // hide all ticket _id's so that only poster can see & save his id and update it
-    
+
+    // delete ticket    
 router.delete('/tickets/delete/:id' , ticketController.deleteTicket)
 
 

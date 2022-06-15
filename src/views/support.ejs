@@ -30,7 +30,9 @@
                     <li class="nav-item">
                       <a class="nav-link active" href="#">contact</a>
                     </li>
-
+                    <li class="nav-item">
+                      <a class="nav-link" href="/api">API</a>
+                    </li>
 
         
                   
@@ -146,14 +148,17 @@
                 <h3><span style="color:#dc3545 ;">#</span>Support</h3>
                 <p>We put great emphasis on helping users , so that if there is something we should be notified
                   about , we are open to receive it. Our Support system is built on the idea of tickets. 
-                  To open a ticket you'll have to fill out the form below. Stating the topic and name is optional, although
-                  very useful and helpful in the context of future contact. We do however require the email, so that contact
+                  To open a ticket you'll have to fill out the form below. Stating the topic is optional, although
+                  very useful and helpful. We do however require the email & name, so that contact
                   is possible from both sides. </p>
                 <p> If you wish to know about how your data is handled on this website please click  <a href="/secondarySites/ToS" class="link-danger">here</a> </p>
                 <p>Additionaly it is required to choose from the dropdown field which type of ticket (bug, help, contact, suggestion)
                   you want to open. On top of that the subject field is also necessary for further context.
-                  All tickets ever created can be accessed on the <a href="/api" class="link-danger"><span class="">'/api'</span></a> routes. With the necessary <privacy policy>
-                  applied to protect your data.</p> 
+                  All tickets ever created can be accessed on the <a href="/api" class="link-danger"><span class="">'/api'</span></a> routes. With the necessary privacy policy
+                  applied to protect your personal data.</p> 
+                  <div class="alert alert-danger mt-4" role="alert">
+                    Important: Your Email & Name will only be visible to you but they're also required for updating/deleting tickets. Do not share them.  
+                  </div>
             </div>
         </section>
 
@@ -167,7 +172,7 @@
                     <form  action="/api/tickets"  method="post" class="my-sm-3" >
     
             
-                      <input  type="name" id="name" name="name" placeholder="Name (recommended)" >
+                      <input required type="name" id="name" name="name" placeholder="Name (recommended)" >
                       
     
                       <input type="email" id="input-1" name="email" placeholder="Email (required)" required>

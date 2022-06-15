@@ -29,7 +29,9 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/support">contact</a>
                   </li>
-
+                  <li class="nav-item">
+                    <a class="nav-link" href="/api">API</a>
+                  </li>
  
                 
                 </ul>
@@ -150,8 +152,8 @@ height: 100vh ; width: 100vw">
       
       
       <!--after uploading all member into db just delete lower divs leaving only this snippet-->
-      <% members.forEach(function(member) { %>
-        <div class=" col-sm col-lg-3 d-flex">
+      <% members.reverse().forEach(function(member) { %>
+        <div class=" col-sm col-lg-4   d-flex">
           <div class="card" style="background-color: black;">
             <div class="card-body text-center flex-fill text-tru">
               <img src="data:image/<%=member.img.contentType%>;base64,
@@ -172,23 +174,6 @@ height: 100vh ; width: 100vw">
       
       <% }) %> 
 
-      <div class=" col-sm col-lg-3 d-flex">
-        <div class="card " style="background-color: black;">
-          <div class="card-body text-center flex-fill">
-            <img src="images.1/JuliaPfp.jpg" class="rounded-circle" alt="" style="width: 128px; height: 128px;">
-            <h3 class="card-title mb3">Julia</h3>
-            <p class="card-text">
-              Learning Web development and  UX/UI design
-
-            </p>
-            
-            <a href="#"><i class="bi bi-facebook text-light mx-1"></i></a>
-
-            <a href="#"><i class="bi bi-instagram text-light mx-1"></i></a>
-          
-          </div>
-        </div>
-      </div>
 
 
 
