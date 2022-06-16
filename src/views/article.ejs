@@ -1,16 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head profile="images.1/appIcon.png">
+    <head profile="favicon/appIcon.png">
         <%- include('./partials/header.ejs')%>
         <title><%= article.title %> </title>
         <base href="/">
       </head>
 </head>
 <body>
-    <a href="/categories">go back</a>
-    <h1>I am the title: <%= article.title %> </h1>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top p-3 index-nav">
+    <div class="container-fluid" style="text-transform: uppercase;">
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories">Categories</a>
+          </li>
 
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Article</a>
+          </li>
+
+        </ul>
+    
+      </div>
+      <a class="navbar-brand ms-auto" href="#" id="right-side">Conspi Archive</a>
+    </div>
+</nav>
+    <div class="bg-image index-bg-img d-flex align-items-center" 
+    style="background-image: url('images.1/articlebg/<%= article.category %>.jpg');
+    height: 100vh ; width: 100vw">
+        <div class="container p-5 p-lg-0 pt-lg-5 text-sm-center text-start text-light pb-lg-5 d-flex">
+            <div class="d-sm-flex align-items-center justify-content-between">
+              <div class="row align-items-center container-for-main" >
+                  <div class="mx-4 my-5 col conspi-header lead text-start animationn">
+                    <h1 class=" " id="demo" style="font-size: 2.5rem;"></h1>
+                    <p class="my-4 subtitle-index pb-lg-5" style="font: size 7vw; color: transparent;">
+                        By: <%= article.author%>
+                    </p>
+
+                  </div>
+              </div>
+            </div>
+        </div>
+</div>
 
     
     <%- include('./partials/footer.ejs') %>
@@ -22,7 +62,21 @@
 <script
   src="https://code.jquery.com/jquery-3.6.0.js"
   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
-
+  crossorigin="anonymous">
+</script>
+  <script>
+    window.onload = function() {  typeWriter()  }
+    var i = 0;
+    var txt = '<%= article.title%> |';
+    var speed = 50;
+    
+    function typeWriter() {
+      if (i < txt.length) {
+        document.getElementById("demo").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    </script>
 </body>
 </html>

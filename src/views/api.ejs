@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head profile="images.1/appIcon.png">
+    <head profile="favicon/appIcon.png">
         <%- include('./partials/header.ejs')%>
         <link rel="stylesheet" href="/js/highlight/styles/tokyo-night-dark.min.css">
         <title>API </title>
@@ -44,7 +44,7 @@
 </nav>
 
 <div class="bg-image index-bg-img d-flex align-items-center z-setting" 
-style="background-image: url('images.1/apibg.jpg');
+style="background-image: url('images.1/mainbg/apibg.jpg');
 height: 100vh ; width: 100vw">
 
     <div class="container p-5 p-lg-0 pt-lg-5 text-sm-start text-light pb-lg-5 d-flex">
@@ -67,8 +67,8 @@ height: 100vh ; width: 100vw">
     </div>
 </div>
 
-<div class="container-fluid overflow-hidden bg-light pt-lg-5 support-text support-main z-setting" style="background-color: black;">
-    <div class="row  overflow-auto">
+<div class="container-fluid overflow-hidden bg-light  pt-lg-5 support-text support-main z-setting" style="background-color: black;">
+    <div class="row  overflow-auto mt-4">
         <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0  d-flex sticky-top" >
             <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-4 pt-4 text-white">
 
@@ -125,6 +125,7 @@ height: 100vh ; width: 100vw">
                         <button type="button" class="list-group-item list-group-item-action">Get by author: <kbd>/api/articles/author/YOUR_AUTHOR</kbd> <span class="badge bg-danger">RM</span></button>
                         <button type="button" class="list-group-item list-group-item-action">Get by source: <kbd>/api/articles/source/YOUR_SOURCE</kbd> <span class="badge bg-danger">RM</span></button>
                   </div>
+                  <!--Do not change whitespace of the json object-->
                   <h5><span style="color:#dc3545">##</span>Json respone object</h5>
                   <pre><code class="language-json rounded">
 {
